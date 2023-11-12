@@ -49,24 +49,5 @@ self.smooth_dump_v3:update(current_value,target_value, dt)
 ```
 
 ## Example
-```lua
-function update(self, dt)
-	if chronos then
-		local time = chronos.nanotime()
-		local a = 1
-		for i=1,10000 do
-			a = a + 1
-		end
-		print("seconds:" .. chronos.nanotime() - time)
-	end
-end
-```
-
-## Api
-
-### chronos.nanotime()
-
-**RETURN**
-* (number) - seconds with nanosecond precision
-
+https://github.com/d954mas/defold-smooth-dump/blob/e7a66feb75663a8629b030133941d9763a7f369d/scene3d/camera/camera3d.script#L72
 `
