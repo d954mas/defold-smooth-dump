@@ -5,6 +5,9 @@ Add 2 SmoothDump functions:
 1. Float
 2. Vector3
 
+
+[![Smooth Dump Camera](https://img.youtube.com/vi/MZ8T-d4ISTw/0.jpg)](https://youtu.be/MZ8T-d4ISTw "Smooth Dump Camera")
+
 ## Installation
 __1)__ Add defold-smooth-dump in your own project as a Defold library dependency. Open your game.project file and in the dependencies field under project add:
 https://github.com/d954mas/defold-smooth-dump/archive/refs/tags/1.0.0.zip
@@ -55,4 +58,3 @@ This repository based on https://github.com/indiesoftby/defold-scene3d (12.11.20
 Changed camera 3d script for smooth dump
 
 https://github.com/d954mas/defold-smooth-dump/blob/e7a66feb75663a8629b030133941d9763a7f369d/scene3d/camera/camera3d.script#L72
-`
