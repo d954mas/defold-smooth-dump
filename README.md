@@ -1,8 +1,9 @@
 # SmoothDump
 
 Add 2 SmoothDump functions:
-1)Float
-2)Vector3
+
+1. Float
+2. Vector3
 
 ## Installation
 __1)__ Add defold-smooth-dump in your own project as a Defold library dependency. Open your game.project file and in the dependencies field under project add:
