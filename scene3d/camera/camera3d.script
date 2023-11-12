@@ -1,0 +1,92 @@
+go.property("enabled", true)
+go.property("clear_color", vmath.vector4(0.25, 0.25, 0.25, 1))
+go.property("projection", hash("perspective"))
+go.property("field_of_view", 42.5)
+go.property("near_clip", 0.1)
+go.property("far_clip", 100)
+go.property("viewport", vmath.vector4(0, 0, 1, 1))
+
+go.property("late_update", false)
+go.property("late_update_priority", 1)
+
+go.property("debug_mesh_id", hash("debug_mesh"))
+
+local render3d = require("scene3d.render.render3d")
+local SmoothDumpV3 = require "smooth_dump.smooth_dump_v3"
+
+local EMPTY_HASH = hash("")
+
+local DISABLE = hash("disable")
+local PERSPECTIVE = hash("perspective")
+
+local function update_render(self, dt)
+    if not self.enabled then
+        return
+    end
+
+    -- DEBUG
+    -- print("camera3d (" .. render3d.frame_num .. "): update render")
+
+    local R = render3d
+
+    self.target_camera_position = go.get_position()
+
+    self.smooth_dump_v3:update(self.camera_position, self.target_camera_position, dt or 1/60)
+
+    R.view_position = self.camera_position
+
+
+    -- R.view_direction(vmath.rotate(go.get_rotation(), R.FORWARD))
+    R.view_from_rotation(go.get_rotation())
+
+    R.clear_color = self.clear_color
+    R.fov = self.field_of_view
+    R.near = self.near_clip
+    R.far = self.far_clip
+
+    R.viewports[1].x = self.viewport.x
+    R.viewports[1].y = self.viewport.y
+    R.viewports[1].w = self.viewport.z
+    R.viewports[1].h = self.viewport.w
+end
+
+-- This update will happen after game objects have been moved by the physics engine
+local function late_update(self)
+    update_render(self)
+end
+
+function init(self)
+    assert(self.projection == PERSPECTIVE, "Only perspective projection is supported.")
+
+    if self.late_update then
+        self.late_update_id = scene3d.prerender_register(late_update, self.late_update_priority)
+    end
+
+    if self.debug_mesh_id ~= EMPTY_HASH then
+        msg.post(msg.url(nil, nil, self.debug_mesh_id), DISABLE)
+    end
+
+    self.camera_position = go.get_position()
+    self.target_camera_position = go.get_position()
+
+    self.smooth_dump_v3 = SmoothDumpV3.new()
+    --default values
+    self.smooth_dump_v3.smoothTime = 0.5
+    self.smooth_dump_v3.maxSpeed = math.huge
+    self.smooth_dump_v3.maxDistance = 5
+end
+
+function final(self)
+    if self.late_update_id then
+        scene3d.prerender_unregister(self.late_update_id)
+    end
+end
+
+function update(self, dt)
+    if not self.late_update_id then
+        update_render(self, dt)
+    end
+end
+
+function on_message(self, message_id, message, sender)
+end

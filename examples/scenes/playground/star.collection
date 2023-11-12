@@ -1,0 +1,95 @@
+name: "default"
+instances {
+  id: "icon_star"
+  prototype: "/scene3d/prefabs/icons/icon_star.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "icon"
+    properties {
+      id: "collision_type"
+      value: "trigger"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "collision_group"
+      value: "star"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "collision_mask"
+      value: "star_collector"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "message_receiver"
+      value: "/star_collector"
+      type: PROPERTY_TYPE_URL
+    }
+    properties {
+      id: "message_init"
+      value: "init_star"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "animation_property"
+      value: "euler.y"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "animation_to"
+      value: "36000.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "animation_easing"
+      value: "linear"
+      type: PROPERTY_TYPE_HASH
+    }
+    properties {
+      id: "animation_duration"
+      value: "100.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "blob_shadow_factory_url"
+      value: "/blob_shadows#circle"
+      type: PROPERTY_TYPE_URL
+    }
+    properties {
+      id: "blob_shadow_tint"
+      value: "1.0, 0.9, 0.66, 0.75"
+      type: PROPERTY_TYPE_VECTOR4
+    }
+    properties {
+      id: "blob_shadow_scale"
+      value: "2.0, 2.0, 1.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "blob_shadow_max_distance"
+      value: "3.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "blob_shadow_distance_scale"
+      value: "0.5"
+      type: PROPERTY_TYPE_NUMBER
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+scale_along_z: 1
