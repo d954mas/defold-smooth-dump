@@ -49,5 +49,9 @@ self.smooth_dump_v3:update(current_value,target_value, dt)
 ```
 
 ## Example
+
+This repository based on https://github.com/indiesoftby/defold-scene3d (12.11.2023)
+Changed camera 3d script for smooth dump
+
 https://github.com/d954mas/defold-smooth-dump/blob/e7a66feb75663a8629b030133941d9763a7f369d/scene3d/camera/camera3d.script#L72
 `
